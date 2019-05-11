@@ -1,0 +1,10 @@
+#SESSION
+
+
+
+    initialized
+    $_SESSION["variables"]['site_name'] = $conf->site_name;
+    $_SESSION["variables"]['site_main_link'] = $conf->site_main_link;
+    $_SESSION["variables"]['limit_money'] = $conf->limit_money;
+    stop_html
+
