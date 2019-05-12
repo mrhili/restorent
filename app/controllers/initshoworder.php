@@ -11,11 +11,11 @@ if( empty( $_GET['i'] ) ){
 
 $ordering = $framework_ordering_model::getItWell($_GET['i']) ;
 
-
-if( $framework_security::isOnlyChef() && $ordering->user_id != $_SESSION['id'] ){
-
+//+
+if($framework_security::isOnlyChef() && $ordering->user_id != $_SESSION['id'] ){
 
     $framework_utilities::back();
+
 }
 
 

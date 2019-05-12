@@ -35,7 +35,7 @@ class Alert extends Utilities{
     public static function write($message){
 
         
-        return "<html><body>".$message."</body></html>";
+        echo "<html><body>".$message."</body></html>";
     }
 }
 

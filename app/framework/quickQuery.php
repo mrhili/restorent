@@ -4,6 +4,113 @@ class QuickQuery extends InitDB{
 
 
 
+    public static function dropBy($table , Array $by ){
+
+        
+
+
+        foreach($by as $key => $item){
+
+            $conn = self::init();
+
+            try{
+
+                $sql = "DELETE FROM ".$table." WHERE ".$key." = ?";
+    
+                self::debug( $sql );
+                $conn->prepare($sql)->execute( [$item] );
+            
+    
+                return true;
+    
+    
+            }catch(PDOException $e){
+                self::write($e);
+                return null;
+            }
+            
+
+        }
+
+
+
+    }
+
+
+    public static function drop($table , $id ){
+
+        $conn = self::init();
+
+
+        try{
+
+            $sql = "DELETE FROM ".$table." WHERE id=:id";
+
+            ////self::debug( $sql );
+            $conn->prepare($sql)->bindParam(':id', $id)->execute();
+        
+
+            return true;
+
+
+        }catch(PDOException $e){
+            self::write($e);
+            return null;
+        }
+        
+    }
+
+
+    public static function update($table , Array $columns , $id ){
+
+
+
+        $conn = self::init();
+
+
+        $string = '';
+        $counter= 1;
+
+        foreach($columns as $key => $item){
+
+            $string.= $key.'=:'.$key;
+
+
+
+            if( $counter != 1 && $counter != count( $columns ) ){
+
+                $questions.=' , ';
+
+            }
+
+            $counter++;
+
+        }
+
+
+
+        try{
+
+            $sql = "UPDATE ".$table." SET ".$string." WHERE id=:id";
+            //self::debug( $sql );
+            ////self::debug( $sql );
+            $columns['id'] = $id;
+            $table_update = $conn->prepare($sql)->execute($columns);
+        
+
+            return ['row_id' => $id , 'table_insert' => $table_update ];
+
+
+        }catch(PDOException $e){
+            self::write($e);
+            return null;
+        }
+        
+    }
+
+
+
+
     public static function insert($table , Array $columns ){
         $conn = self::init();
 
