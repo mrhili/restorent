@@ -1,4 +1,6 @@
 <?Php
+$token_arounds = [];
+
 
 if( empty( $_GET['i'] ) ){
 
@@ -8,6 +10,9 @@ if( empty( $_GET['i'] ) ){
 
 }
 $ordering = $framework_ordering_model::getItWell($_GET['i']) ;
+
+
+
 
 
 if($framework_security::isOnlyChef() && $ordering->user_id != $_SESSION['id'] ){
@@ -22,6 +27,9 @@ $arounds = $framework_quick_query::rows('arounds');
 $sizes = $framework_quick_query::rows('sizes');
 
 
+foreach($ordering->arounds as $key => $around){
+
+    array_push($token_arounds, $around->id);
 
 
-//$framework_tools::debug( $types);
+}

@@ -127,8 +127,8 @@ if( !$framework_alert::checkHtmlStops() ){
 
             <td>
             <ul>
-            <li><a href="<?= $framework_route::from2('back', 'back', 'showmeal').'?i='.$around->id ?>" class="btn btn-primary btn-xs">Watch</a></li>
-            <li><a href="<?= $framework_route::from2('back', 'back', 'updatemeal').'?i='.$around->id ?>" class="btn btn-success btn-xs">Update</a></li>
+            <li><a href="<?= $framework_route::from2('back', 'back', 'showmeal').'?i='.$ordering->id ?>" class="btn btn-primary btn-xs">Watch</a></li>
+            <li><a href="<?= $framework_route::from2('back', 'back', 'updatemeal').'?i='.$ordering->id ?>" class="btn btn-success btn-xs">Update</a></li>
 
             
             </ul>

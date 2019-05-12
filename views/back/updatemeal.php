@@ -162,10 +162,12 @@ if( !$framework_alert::checkHtmlStops() ){
 
                             <?Php
                             foreach($arounds as $key =>$around){
+
+                              
                               ?>
 
                                 <tr>
-                                <td><input type="checkbox" name="arounds[]" <?= ($key == 'aroundkey_'.$around->id) ? 'checked': '' ?> value="<?= $around->id ?>"></td>
+                                <td><input type="checkbox" name="arounds[]" <?= in_array($around->id , $token_arounds)  ? 'checked': '' ?> value="<?= $around->id ?>"></td>
 
                                     <td><?= $around->name ?></td>
                                 </tr>

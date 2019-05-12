@@ -7,7 +7,7 @@ include_once( "../../app/controllers/initapp.php");
 $framework_security::logFilter();
 
 
-
+//$framework_tools::debug( $_POST);
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     // The request is using the POST method
@@ -67,7 +67,7 @@ $price += floatval(  $framework_quick_query::first('types', $type, 'price')  );
 
 
 if( empty( $_POST['arounds'] )){
-    $framework_utilities::back();
+    $_POST['arounds'] = [];
 }
 
 if( !is_array( $_POST['arounds'] ) ){
@@ -127,26 +127,26 @@ if(is_array($table_ordering)){
 
 }
 
-if( count($_POST['arounds']) == 0  ){
+if( count($_POST['arounds']) != 0  ){
 
-foreach( $arounds as $around ){
-
-
-
-    $table_around_ordering = $framework_quick_query::insert('around_ordering',[
-
-        'ordering_id' => $table_ordering['row_id'],
-        'around_id' => $around
-    ]);
+    foreach( $arounds as $around ){
 
 
-}
 
-if(is_array($table_around_ordering)){
+        $table_around_ordering = $framework_quick_query::insert('around_ordering',[
 
-    $good['around_ordering'] = True;
+            'ordering_id' => $table_ordering['row_id'],
+            'around_id' => $around
+        ]);
 
-}
+
+    }
+
+    if(is_array($table_around_ordering)){
+
+        $good['around_ordering'] = True;
+
+    }
 }else{
     $good['around_ordering'] = True;
 }

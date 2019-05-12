@@ -77,9 +77,9 @@ class QuickQuery extends InitDB{
 
 
 
-            if( $counter != 1 && $counter != count( $columns ) ){
+            if( $counter != count( $columns ) ){
 
-                $questions.=' , ';
+                $string.=' , ';
 
             }
 
@@ -91,11 +91,22 @@ class QuickQuery extends InitDB{
 
         try{
 
+            self::debug( 'INSIDE THE QUERY' );
+
+
+            self::debug( $table );
+            self::debug( $columns );
+            self::debug( $id );
+            self::debug( $string );
+
             $sql = "UPDATE ".$table." SET ".$string." WHERE id=:id";
-            //self::debug( $sql );
+            self::debug( $sql );
             ////self::debug( $sql );
             $columns['id'] = $id;
             $table_update = $conn->prepare($sql)->execute($columns);
+
+
+            self::debug( 'END' );
         
 
             return ['row_id' => $id , 'table_insert' => $table_update ];
@@ -136,10 +147,15 @@ class QuickQuery extends InitDB{
                 $counter++;
 
             }
-            $sql = "INSERT INTO ".$table." ( ".implode( ", ", array_keys($columns) )." ) VALUES(".$questions.")";
+            $sql = "INSERT INTO ".$table." ( ".implode( ' , ', array_keys($columns) )." ) VALUES(".$questions.")";
 
-            ////self::debug( $sql );
-            $table_insert = $conn->prepare($sql)->execute(array_values($columns));
+            self::debug( 'INSERTTTTTTTTTTTTTTTTT' );
+            self::debug( $columns );
+            self::debug( array_keys($columns) );
+            self::debug( array_values($columns ) );
+            self::debug( $sql );
+            self::debug( 'INSERTTTTTTTTTTTTTTTTT' );
+            $table_insert = $conn->prepare($sql)->execute( array_values($columns ));
         
             $row_id = $conn->lastInsertId();
 

@@ -73,6 +73,7 @@ if( !$framework_alert::checkHtmlStops() ){
         <thead>
             <tr>
             <th scope="col">#</th>
+            <th scope="col">Control</th>
             <th scope="col">Costumer</th>
             <th scope="col">Type</th>
             <th scope="col">Size</th>
@@ -80,7 +81,7 @@ if( !$framework_alert::checkHtmlStops() ){
             <th scope="col">Arounds</th>
             <th scope="col">User</th>
             <th scope="col">Note</th>
-            <th scope="col">Control</th>
+            
 
             </tr>
         </thead>
@@ -92,6 +93,15 @@ if( !$framework_alert::checkHtmlStops() ){
         ?>
             <tr>
             <th scope="row"><?= $count ?></th>
+            <td>
+            <ul>
+            <li><a href="<?= $framework_route::from2('back', 'back', 'showmeal').'?i='.$ordering->id ?>" class="btn btn-primary btn-xs">Watch</a></li>
+            <li><a href="<?= $framework_route::from2('back', 'back', 'updatemeal').'?i='.$ordering->id ?>" class="btn btn-success btn-xs">Update</a></li>
+
+            
+            </ul>
+            </td>
+            
             <td>
             <ul>
                 <li><?= 'N° :'.$ordering->costumer->id ?></li>
@@ -117,23 +127,17 @@ if( !$framework_alert::checkHtmlStops() ){
                 ?>
                 </ul>
             </td>
-            <td>
-            <ul>
-                <li><?= 'Email :'.$ordering->user->email ?></li>
-                <li><?= 'Name :'.$ordering->user->name ?></li>
-                <li><?= 'Role :'. $framework_conf::getRoles($ordering->user->role) ?></li>
-                <li><?= 'Tel :'.$ordering->costumer->tel ?></li>
-            </ul>
-            </td>
+
             <td><p><?= $ordering->note ?></p></td>
             
+
+
             </tr>
-            <td><a href="<?= $framework_route::from2('back', 'back', 'showmeal').'?i='.$around->id ?>" class="btn btn-primary btn-xs">Watch</a></td>
 
 
             <?Php
 
-$count++;
+            $count++;
 
             }
             ?>
