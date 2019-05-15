@@ -9,4 +9,5 @@ class Math extends Utilities{
 	  return round($resultat); // Arrondi la valeur
 	}
 }
+
 $framework_math = new Math();
